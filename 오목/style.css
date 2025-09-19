@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+}
+
+.current-player {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #495057;
+}
+
+#current-player {
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.game-status {
+    font-size: 1.1em;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    gap: 0;
+    width: 450px;
+    height: 450px;
+    margin: 0 auto;
+    background: #d4a574;
+    border: 3px solid #8b4513;
+    border-radius: 10px;
+    position: relative;
+    background-image: 
+        linear-gradient(to right, #8b4513 1px, transparent 1px),
+        linear-gradient(to bottom, #8b4513 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 15px 15px;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.cell:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cell.black {
+    background: radial-gradient(circle, #2c2c2c 0%, #000000 100%);
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: default;
+    width: 24px;
+    height: 24px;
+    margin: 3px;
+}
+
+.cell.white {
+    background: radial-gradient(circle, #ffffff 0%, #f0f0f0 100%);
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    width: 24px;
+    height: 24px;
+    margin: 3px;
+}
+
+.cell.winning {
+    animation: pulse 1s infinite;
+    box-shadow: 0 0 10px #ff6b6b;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#reset-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+#reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+#reset-btn:active {
+    transform: translateY(0);
+}
+
+.rules {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #007bff;
+}
+
+.rules h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.rules ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.rules li {
+    color: #6c757d;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.rules li:before {
+    content: "●";
+    color: #007bff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 5px;
+        max-width: 100%;
+    }
+    
+    h1 {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .current-player, .game-status {
+        font-size: 1em;
+    }
+    
+    .game-board {
+        width: min(350px, 90vw);
+        height: min(350px, 90vw);
+        background-size: calc(100% / 15) calc(100% / 15);
+        background-position: calc(100% / 30) calc(100% / 30);
+    }
+    
+    .cell {
+        width: calc(100% / 15);
+        height: calc(100% / 15);
+        min-width: 20px;
+        min-height: 20px;
+    }
+    
+    .cell.black, .cell.white {
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+        margin: 3px;
+    }
+    
+    .controls {
+        margin: 15px 0;
+    }
+    
+    #reset-btn {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+    
+    .rules {
+        margin-top: 20px;
+        padding: 15px;
+    }
+    
+    .rules h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    
+    .rules li {
+        font-size: 0.9em;
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        margin: 2px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+    
+    .game-info {
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .current-player, .game-status {
+        font-size: 0.9em;
+    }
+    
+    .game-board {
+        width: min(300px, 85vw);
+        height: min(300px, 85vw);
+    }
+    
+    .cell {
+        min-width: 16px;
+        min-height: 16px;
+    }
+    
+    .cell.black, .cell.white {
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        margin: 2px;
+    }
+    
+    #reset-btn {
+        padding: 8px 20px;
+        font-size: 0.9em;
+    }
+    
+    .rules {
+        margin-top: 15px;
+        padding: 10px;
+    }
+    
+    .rules h3 {
+        font-size: 1.1em;
+    }
+    
+    .rules li {
+        font-size: 0.8em;
+        margin-bottom: 4px;
+    }
+}
+
+/* 터치 디바이스 최적화 */
+@media (hover: none) and (pointer: coarse) {
+    .cell:hover {
+        background-color: transparent;
+    }
+    
+    .cell:active {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    #reset-btn:hover {
+        transform: none;
+    }
+    
+    #reset-btn:active {
+        transform: translateY(0);
+    }
+}
+
+/* 가로 모드 최적화 */
+@media (orientation: landscape) and (max-height: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+    
+    .game-info {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .game-board {
+        width: min(300px, 50vh);
+        height: min(300px, 50vh);
+    }
+    
+    .rules {
+        display: none; /* 가로 모드에서는 규칙 숨김 */
+    }
+}
+
+/* 매우 작은 화면 (iPhone SE 등) */
+@media (max-width: 375px) {
+    .game-board {
+        width: min(280px, 80vw);
+        height: min(280px, 80vw);
+    }
+    
+    .cell {
+        min-width: 14px;
+        min-height: 14px;
+    }
+    
+    .cell.black, .cell.white {
+        width: calc(100% - 3px);
+        height: calc(100% - 3px);
+        margin: 1.5px;
+    }
+}
+
+/* 터치 피드백 개선 */
+.cell {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 스크롤 방지 */
+body {
+    overflow-x: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    overflow-y: auto;
+    height: 100%;
+}

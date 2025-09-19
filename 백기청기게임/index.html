@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백기청기 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 헤더 -->
+        <header class="game-header">
+            <h1>🏁 백기청기 게임</h1>
+            <div class="game-info">
+                <div class="score">점수: <span id="score">0</span></div>
+                <div class="streak">연속: <span id="streak">0</span></div>
+                <div class="timer">시간: <span id="timer">60</span>초</div>
+                <div class="difficulty">난이도: <span id="difficulty">1</span></div>
+            </div>
+        </header>
+
+        <!-- 게임 영역 -->
+        <main class="game-area">
+            <!-- 깃발들 -->
+            <div class="flags-container">
+                <!-- 백기 섹션 -->
+                <div class="flag-section">
+                    <div class="flag white-flag" id="white-flag">
+                        <div class="flag-pole"></div>
+                        <div class="flag-cloth white"></div>
+                        <div class="flag-text">백기</div>
+                    </div>
+                    <div class="flag-buttons">
+                        <button class="flag-btn up-btn" id="white-up-btn">올려</button>
+                        <button class="flag-btn down-btn" id="white-down-btn">내려</button>
+                    </div>
+                </div>
+                
+                <!-- 청기 섹션 -->
+                <div class="flag-section">
+                    <div class="flag blue-flag" id="blue-flag">
+                        <div class="flag-pole"></div>
+                        <div class="flag-cloth blue"></div>
+                        <div class="flag-text">청기</div>
+                    </div>
+                    <div class="flag-buttons">
+                        <button class="flag-btn up-btn" id="blue-up-btn">올려</button>
+                        <button class="flag-btn down-btn" id="blue-down-btn">내려</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 별도 동작 섹션 -->
+            <div class="action-section">
+                <h3>별도 동작</h3>
+                <div class="action-buttons">
+                    <button class="action-btn stand-btn" id="stand-btn">일어서기</button>
+                    <button class="action-btn sit-btn" id="sit-btn">앉기</button>
+                </div>
+            </div>
+
+            <!-- 명령어 표시 -->
+            <div class="command-display">
+                <div class="current-command" id="current-command">
+                    게임을 시작하려면 시작 버튼을 클릭하세요!
+                </div>
+            </div>
+
+            <!-- 결과 표시 -->
+            <div class="result-display" id="result-display">
+                <div class="result-text" id="result-text"></div>
+            </div>
+        </main>
+
+        <!-- 컨트롤 패널 -->
+        <div class="control-panel">
+            <button class="control-btn" id="start-btn">게임 시작</button>
+            <button class="control-btn" id="stop-btn" disabled>게임 중지</button>
+            <button class="control-btn" id="reset-btn">리셋</button>
+        </div>
+
+        <!-- 음성 설정 -->
+        <div class="voice-settings">
+            <h3>음성 설정</h3>
+            <div class="setting-item">
+                <label for="voice-speed">음성 속도:</label>
+                <input type="range" id="voice-speed" min="0.5" max="3" step="0.1" value="1.5">
+                <span id="speed-value">1.5x</span>
+            </div>
+        </div>
+
+        <!-- 게임 오버 모달 -->
+        <div class="game-over-modal" id="game-over-modal">
+            <div class="modal-content">
+                <h2>게임 종료!</h2>
+                <div class="final-stats">
+                    <div class="stat">최종 점수: <span id="final-score">0</span></div>
+                    <div class="stat">최고 연속: <span id="best-streak">0</span></div>
+                    <div class="stat">정확도: <span id="accuracy">0%</span></div>
+                </div>
+                <button class="modal-btn" id="play-again-btn">다시 플레이</button>
+            </div>
+        </div>
+
+        <!-- 사용법 안내 -->
+        <div class="instructions">
+            <h3>게임 방법</h3>
+            <ul>
+                <li>🎵 음성으로 나오는 명령을 듣고 반응하세요</li>
+                <li>🏁 "백기 올려/내려" → 백기 버튼, "청기 올려/내려" → 청기 버튼</li>
+                <li>🏁 "일어서기/앉기" → 별도 동작 버튼</li>
+                <li>🎉 정답 시 "아싸~", "지화자!" 등 효과음이 나옵니다!</li>
+                <li>😅 틀리면 "아이고!", "어머!" 등 효과음이 나옵니다!</li>
+                <li>📈 시간이 지날수록 난이도가 올라갑니다!</li>
+                <li>🎭 변주 명령어: "백기 내리지 말고 올려!" 등</li>
+                <li>⚡ 빠르고 정확하게 반응하세요!</li>
+                <li>🎯 연속으로 맞추면 보너스 점수를 받습니다</li>
+                <li>⌨️ 키보드: 1-2(백기), 3-4(청기), 5-6(별도동작)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

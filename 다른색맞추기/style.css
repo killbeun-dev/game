@@ -1,0 +1,373 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.game-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    color: #495057;
+}
+
+.status-value {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-top: 5px;
+}
+
+.grid {
+    display: grid;
+    gap: 8px;
+    margin: 0 auto 20px;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.grid-4x4 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: min(400px, 90vw);
+    height: min(400px, 90vw);
+}
+
+.grid-3x3 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: min(300px, 80vw);
+    height: min(300px, 80vw);
+}
+
+.cell {
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid transparent;
+}
+
+.cell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cell:active {
+    transform: scale(0.95);
+}
+
+.cell.correct {
+    animation: correctPulse 0.6s ease-out;
+    border-color: #27ae60;
+    box-shadow: 0 0 20px rgba(39, 174, 96, 0.5);
+}
+
+.cell.wrong {
+    animation: wrongShake 0.6s ease-out;
+    border-color: #e74c3c;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+}
+
+@keyframes correctPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+button {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    margin: 5px;
+    min-width: 120px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.message {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message.success {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    color: white;
+    box-shadow: 0 4px 20px rgba(39, 174, 96, 0.3);
+}
+
+.message.error {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+    box-shadow: 0 4px 20px rgba(231, 76, 60, 0.3);
+}
+
+.message.info {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    box-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
+}
+
+.instructions {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border-left: 4px solid #3498db;
+}
+
+.instructions h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.instructions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.instructions li {
+    margin: 10px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    font-size: 1.1em;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    h1 {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+    
+    .status {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .status-item {
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .status-value {
+        font-size: 1.3em;
+    }
+    
+    .grid-4x4 {
+        width: min(350px, 85vw);
+        height: min(350px, 85vw);
+        gap: 6px;
+    }
+    
+    .grid-3x3 {
+        width: min(280px, 75vw);
+        height: min(280px, 75vw);
+        gap: 6px;
+    }
+    
+    .cell {
+        min-height: 60px;
+    }
+    
+    button {
+        padding: 12px 24px;
+        font-size: 1em;
+        min-width: 100px;
+    }
+    
+    .message {
+        font-size: 1.3em;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        padding: 10px;
+        margin: 2px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .grid-4x4 {
+        width: min(300px, 90vw);
+        height: min(300px, 90vw);
+        gap: 4px;
+    }
+    
+    .grid-3x3 {
+        width: min(240px, 80vw);
+        height: min(240px, 80vw);
+        gap: 4px;
+    }
+    
+    .cell {
+        min-height: 50px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+        min-width: 80px;
+    }
+    
+    .message {
+        font-size: 1.2em;
+        padding: 10px;
+    }
+    
+    .instructions {
+        padding: 15px;
+    }
+    
+    .instructions li {
+        font-size: 1em;
+        padding: 8px;
+    }
+}
+
+/* 터치 디바이스 최적화 */
+@media (hover: none) and (pointer: coarse) {
+    .cell:hover {
+        transform: none;
+    }
+    
+    .cell:active {
+        transform: scale(0.95);
+    }
+    
+    button:hover {
+        transform: none;
+    }
+    
+    button:active {
+        transform: translateY(0);
+    }
+}
+
+/* 가로 모드 최적화 */
+@media (orientation: landscape) and (max-height: 600px) {
+    .game-container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+    
+    .status {
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    
+    .grid-4x4 {
+        width: min(250px, 40vh);
+        height: min(250px, 40vh);
+    }
+    
+    .grid-3x3 {
+        width: min(200px, 35vh);
+        height: min(200px, 35vh);
+    }
+    
+    .message {
+        font-size: 1.2em;
+        margin: 10px 0;
+        padding: 8px;
+    }
+}

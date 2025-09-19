@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>다른색 맞추기 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="다른색 맞추기">
+</head>
+<body>
+    <div class="game-container">
+        <h1>🎨 다른색 맞추기</h1>
+        
+        <div class="status">
+            <div class="status-item">
+                <span>점수</span>
+                <span class="status-value" id="score">0</span>
+            </div>
+            <div class="status-item">
+                <span>시간</span>
+                <span class="status-value" id="time">30</span>
+            </div>
+            <div class="status-item">
+                <span>레벨</span>
+                <span class="status-value" id="level">1</span>
+            </div>
+        </div>
+        
+        <div id="grid" class="grid"></div>
+        
+        <div class="message info" id="message">
+            게임을 시작하려면 시작 버튼을 누르세요!
+        </div>
+        
+        <div class="controls">
+            <button id="start">시작</button>
+            <button id="restart" disabled>다시 시작</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>게임 방법</h3>
+            <ul>
+                <li>🎯 그리드에서 다른 색을 가진 원을 찾아 클릭하세요</li>
+                <li>⚡ 빠르게 정확하게 클릭할수록 높은 점수를 얻습니다</li>
+                <li>📈 레벨이 올라갈수록 그리드 크기가 커집니다</li>
+                <li>🏆 연속으로 맞추면 보너스 점수를 받습니다</li>
+                <li>📱 모바일에서도 터치로 쉽게 플레이할 수 있습니다</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

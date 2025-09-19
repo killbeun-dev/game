@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>오목 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="오목 게임">
+</head>
+<body>
+    <div class="container">
+        <h1>오목 게임</h1>
+        <div class="game-info">
+            <div class="current-player">
+                현재 차례: <span id="current-player">흑돌</span>
+            </div>
+            <div class="game-status" id="game-status">게임을 시작하세요!</div>
+        </div>
+        <div class="game-board" id="game-board">
+            <!-- 15x15 오목판이 JavaScript로 생성됩니다 -->
+        </div>
+        <div class="controls">
+            <button id="reset-btn">게임 다시 시작</button>
+        </div>
+        <div class="rules">
+            <h3>게임 규칙</h3>
+            <ul>
+                <li>흑돌이 먼저 시작합니다</li>
+                <li>가로, 세로, 대각선으로 5개를 연속으로 놓으면 승리합니다</li>
+                <li>6개 이상 연속으로 놓으면 무효입니다</li>
+                <li>돌을 클릭하여 놓을 수 있습니다</li>
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
